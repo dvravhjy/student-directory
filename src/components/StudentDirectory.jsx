@@ -1,18 +1,20 @@
-import StudentCard from './StudentCard';
+import StudentCard from "./StudentCard";
+import styles from "./StudentDirectory.module.css";
 
 export default function StudentDirectory({ students }) {
-  return (
-    <div>
-      <h1>Student Directory</h1>
+  if (students.length === 0) {
+    return (
+      <p className={styles.noResults}>
+        No students match your search or filter.
+      </p>
+    );
+  }
 
-      <div>
-        {students.map((student) => (
-          <StudentCard
-            key={student.id}
-            student={student}
-          />
-        ))}
-      </div>
+  return (
+    <div className={styles.directory}>
+      {students.map((student) => (
+        <StudentCard key={student.id} student={student} />
+      ))}
     </div>
   );
 }
